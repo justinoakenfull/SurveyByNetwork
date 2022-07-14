@@ -433,7 +433,6 @@ public class UIComponentBuilder {
      * @param inputYPosition The vertical positioning of the button.
      * @param applicationListener The action listener to be assigned to the button.
      * @param inputLayout The Spring layout the button will be positioned with.
-     * @param inputFrame The frame the button will be added to and positioned off.
      *
      * @return Returns the completed button.
      */
