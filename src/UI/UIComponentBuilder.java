@@ -66,6 +66,46 @@ public class UIComponentBuilder {
     }
 
     /***
+     * This method creates a text label and adds it to the layout defined, attaches to a specified component with
+     * styling specified.
+     * @param inputText The text to be displayed on the label.
+     * @param inputXPosition The horizontal position of the label starting from the left.
+     * @param inputYPosition The vertical position of the label starting from the top.
+     * @param inputLayout The Spring Layout that will be used for positioning.
+     * @param inputFrame The frame the label will be added to.
+     * @param inputTextSize The size of the text to be used.
+     * @param inputTextColour The color of the text (Foreground).
+     * @param isTheFontBold Whether the text should be bold or not.
+     * @param inputSize The size of the label itself (Not the text size).
+     * @param inputBackgroundColour The color of the labels background (Background).
+     * @param attachToComponent The component to attach this label to.
+     *
+     * @return The created label is returned.
+     */
+    public static JLabel CreateLabel(String inputText, int inputXPosition, int inputYPosition, SpringLayout inputLayout,
+                                     JFrame inputFrame, int inputTextSize, Color inputTextColour, boolean isTheFontBold,
+                                     Dimension inputSize, Color inputBackgroundColour, Component attachToComponent)
+    {
+        JLabel outputNewLabel = new JLabel(inputText);
+        inputLayout.putConstraint(SpringLayout.WEST, outputNewLabel, inputXPosition, SpringLayout.WEST, attachToComponent);
+        inputLayout.putConstraint(SpringLayout.NORTH, outputNewLabel, inputYPosition, SpringLayout.NORTH, attachToComponent);
+        inputFrame.add(outputNewLabel);
+        if (isTheFontBold)
+        {
+            outputNewLabel.setFont(new Font("SanSerif", Font.BOLD, inputTextSize));
+        }
+        else
+        {
+            outputNewLabel.setFont(new Font("SanSerif", Font.PLAIN, inputTextSize));
+        }
+        outputNewLabel.setForeground(inputTextColour);
+        outputNewLabel.setOpaque(true);
+        outputNewLabel.setPreferredSize(new Dimension(inputSize));
+        outputNewLabel.setBackground(inputBackgroundColour);
+        return outputNewLabel;
+    }
+
+    /***
      * This method creates a text label and adds it to the layout defined, attaches to the frame with styling specified.
      * @param inputText The text to be displayed on the label.
      * @param inputXPosition The horizontal position of the label starting from the left.
@@ -345,7 +385,7 @@ public class UIComponentBuilder {
                                        int inputYPosition, ActionListener applicationListener,
                                        SpringLayout inputLayout, JFrame inputFrame, Component attachToComponent)
     {
-        JButton outputNewButton = new JButton(inputText);
+        JButton outputNewButton = new StyledButton(inputText);
         outputNewButton.addActionListener(applicationListener);
         outputNewButton.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
         inputLayout.putConstraint(SpringLayout.WEST, outputNewButton, inputXPosition, SpringLayout.WEST, attachToComponent);
