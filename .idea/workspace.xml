@@ -4,7 +4,6 @@
     <list default="true" id="e8c895c8-4c62-45d9-ae0a-312d7572976a" name="Changes" comment="ui updates">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/SurveyManagementUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/SurveyManagementUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/UIComponentBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/UIComponentBuilder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +20,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/UI/SurveyManagementUI.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/UI/UIComponentBuilder.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2BpJyC6ocving268ZcdyIrhm9HI" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -60,7 +66,7 @@
       <updated>1657597347216</updated>
       <workItem from="1657597349270" duration="7407000" />
       <workItem from="1657670890547" duration="4130000" />
-      <workItem from="1657752375003" duration="5007000" />
+      <workItem from="1657752375003" duration="8866000" />
     </task>
     <task id="LOCAL-00001" summary="ui updates">
       <created>1657706699544</created>
@@ -69,7 +75,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657706699544</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="ui updates">
+      <created>1657759857191</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1657759857191</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

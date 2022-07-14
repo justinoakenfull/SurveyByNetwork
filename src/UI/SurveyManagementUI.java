@@ -2,9 +2,7 @@ package UI;
 
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.plaf.BorderUIResource;
 import java.awt.*;
-import java.awt.color.ICC_Profile;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -73,8 +71,6 @@ public class SurveyManagementUI extends JFrame implements ActionListener
     public SurveyManagementUI()
     {
         initialiseUI();
-
-
         setVisible(true);
     }
 
@@ -89,7 +85,67 @@ public class SurveyManagementUI extends JFrame implements ActionListener
         SetupLinkedListSection();
         SetupBinaryTreeSection();
         SetupFooterButtons();
+        StyleTextFields();
+        StyleLabels();
     }
+
+    private void StyleLabels()
+    {
+        JLabel[] questionsDetailsLabels = {lblTopicTitle,lblTopic,lblQuestion,lblQuestionNumber,lblAnswerA,lblAnswerB,lblAnswerC,
+                lblAnswerD,lblAnswerE};
+        for (int i = 0; i < questionsDetailsLabels.length; i++)
+        {
+            if (questionsDetailsLabels[i] == lblTopicTitle)
+            {
+                lblTopicTitle.setHorizontalAlignment(SwingConstants.CENTER);
+            }
+            else if (questionsDetailsLabels[i] == lblQuestion)
+            {
+                lblQuestion.setPreferredSize(new Dimension(questionDetailsLabelSize.width, 74));
+            }
+            else
+            {
+                questionsDetailsLabels[i].setPreferredSize(questionDetailsLabelSize);
+            }
+        }
+        lblSearchQuestion.setPreferredSize(new Dimension(lblSearchQuestion.getPreferredSize().width,labelHeight-17));
+        lblPreorder.setHorizontalAlignment(0);
+        lblInOrder.setHorizontalAlignment(0);
+        lblPostOrder.setHorizontalAlignment(0);
+        lblSortBy.setPreferredSize(new Dimension(100, 30));
+        lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+    }
+
+    private void StyleTextFields()
+    {
+        /**
+         * Get all text fields in the details section and apply the font, size and border uniformly with a fori loop.
+         * Added check in case any of the text fields are deleted in the future.
+         */
+        JTextField[] textFields = {txtTopic, txtQuestion, txtQuestionNumber, txtAnswerA, txtAnswerB, txtAnswerC,
+                txtAnswerD, txtAnswerE};
+        for (int i = 0; i < textFields.length; i++)
+        {
+            if (textFields[i] != null)
+            {
+                textFields[i].setFont(textFieldFonts);
+                textFields[i].setBorder(textEntryBorder);
+                textFields[i].setPreferredSize(questionDetailsTextFieldSize);
+            }
+        }
+        // Set the all other text fields separately due to size restraints.
+        txtSearchQuestions.setFont(new Font(txtSearchQuestions.getFont().getFontName(), txtSearchQuestions.getFont().getStyle(), 16));
+        txtSearchQuestions.setBorder(textEntryBorder);
+        txtSearchQuestions.setPreferredSize(new Dimension(txtSearchQuestions.getWidth(), labelHeight-17));
+        txtMessageArea.setFont(textFieldFonts);
+        txtMessageArea.setBorder(textEntryBorder);
+        txtQuestionArea.setPreferredSize(questionDetailsTextFieldSize);
+        txtQuestionArea.setMaximumSize(questionDetailsTextFieldSize);
+        txtQuestionArea.setFont(textFieldFonts);
+        txtQuestionArea.setLineWrap(true);
+        txtQuestionArea.setBorder(textEntryBorder);
+    }
+
     //region Initialise UI Elements
     private void SetupFooterButtons()
     {
@@ -100,17 +156,14 @@ public class SurveyManagementUI extends JFrame implements ActionListener
         lblPreorder = UIComponentBuilder.CreateLabel("Pre-Order", 0,
                 txtBinaryTreeArea.getPreferredSize().height+10, surveyManagementLayout, this, labelSize, Color.white,
                 false, footerLabelSize, navyBlue, txtBinaryTreeArea);
-        lblPreorder.setHorizontalAlignment(0);
         btnPreOrder = UIComponentBuilder.CreateButton("Display", buttonStandardWidth,buttonStandardHeight, 0,
                 lblPreorder.getPreferredSize().height, this, surveyManagementLayout, this, lblPreorder);
         lblInOrder = UIComponentBuilder.CreateLabel("In-Order", buttonStandardWidth+10, 0, surveyManagementLayout,
                 this, labelSize, Color.white, false, footerLabelSize, navyBlue, lblPreorder);
-        lblInOrder.setHorizontalAlignment(0);
         btnInOrder = UIComponentBuilder.CreateButton("Display", buttonStandardWidth,buttonStandardHeight, 0,
                 lblInOrder.getPreferredSize().height, this, surveyManagementLayout, this, lblInOrder);
         lblPostOrder = UIComponentBuilder.CreateLabel("In-Order", buttonStandardWidth+10, 0, surveyManagementLayout,
                 this, labelSize, Color.white, false, footerLabelSize, navyBlue, lblInOrder);
-        lblPostOrder.setHorizontalAlignment(0);
         btnPostOrder = UIComponentBuilder.CreateButton("Display", buttonStandardWidth,buttonStandardHeight, 0,
                 lblPostOrder.getPreferredSize().height, this, surveyManagementLayout, this, lblPostOrder);
         btnDisplay = UIComponentBuilder.CreateButton("Display", buttonStandardWidth,buttonStandardHeight, buttonStandardWidth+10,
@@ -119,8 +172,7 @@ public class SurveyManagementUI extends JFrame implements ActionListener
                 lblPostOrder.getPreferredSize().height, this, surveyManagementLayout, this, btnDisplay);
         txtMessageArea = UIComponentBuilder.CreateTextArea(1, 37, surveyManagementLayout, buttonStandardWidth+7,
                 0+(buttonStandardHeight*2)/2-24,this, btnDisplay);
-        txtMessageArea.setFont(textFieldFonts);
-        txtMessageArea.setBorder(textEntryBorder);
+
 
 
 
@@ -131,12 +183,14 @@ public class SurveyManagementUI extends JFrame implements ActionListener
         lblBinaryTree = UIComponentBuilder.CreateLabel(" Binary Tree: ", 0-txtLinkedListArea.getPreferredSize().width,
                 txtLinkedListArea.getPreferredSize().height+10,surveyManagementLayout, this, txtLinkedListArea,
                 labelSize, Color.white, false, navyBlue);
-//        lblBinaryTree.setPreferredSize(new Dimension(buttonStandardWidth, 30));
         txtBinaryTreeArea = UIComponentBuilder.CreateTextArea(2, 60, surveyManagementLayout, 0, 30,this,
                 lblBinaryTree);
+        /**
+         * These are set here and not in the styling method due to alignment issues. The footer buttons positions are
+         * set up before the styling method is called, but they're position isn't updated.
+         */
         txtBinaryTreeArea.setFont(textFieldFonts);
         txtBinaryTreeArea.setBorder(textEntryBorder);
-
     }
 
     private void SetupLinkedListSection()
@@ -146,6 +200,10 @@ public class SurveyManagementUI extends JFrame implements ActionListener
                 ,this, btnExit, labelSize, Color.white, false, navyBlue);
         txtLinkedListArea = UIComponentBuilder.CreateTextArea(2, 60, surveyManagementLayout, 0, 30,this,
                 lblLinkedList);
+        /**
+         * These are set here and not in the styling method due to alignment issues. The binary tree positions are
+         * set up before the styling method is called, but they're position isn't updated.
+         */
         txtLinkedListArea.setFont(textFieldFonts);
         txtLinkedListArea.setBorder(textEntryBorder);
     }
@@ -167,81 +225,48 @@ public class SurveyManagementUI extends JFrame implements ActionListener
          */
         lblTopicTitle = UIComponentBuilder.CreateLabel("Question Details", 630, 60, surveyManagementLayout, this,
                 30, Color.white,true, new Dimension(508, 60), navyBlue);
-        lblTopicTitle.setHorizontalAlignment(SwingConstants.CENTER);
         lblTopic = UIComponentBuilder.CreateLabel("Topic: ",630,120,surveyManagementLayout,this,labelSize,Color.WHITE,
                 false, navyBlue);
-        lblTopic.setPreferredSize(questionDetailsLabelSize);
         /**
          * Question and number labels
          */
         lblQuestion = UIComponentBuilder.CreateLabel("Question: ",-labelWidth, labelHeight,surveyManagementLayout,this,lblTopic,
                 labelSize,Color.white,false,navyBlue);
-        lblQuestion.setPreferredSize(new Dimension(questionDetailsLabelSize.width, 74));
         lblQuestionNumber = UIComponentBuilder.CreateLabel("Question #: ", -labelWidth, 74, surveyManagementLayout,
                 this,
                 lblQuestion, labelSize, Color.white,false, navyBlue);
-        lblQuestionNumber.setPreferredSize(questionDetailsLabelSize);
         /**
          * Answer labels A-E
          */
-        lblAnswerA = UIComponentBuilder.CreateLabel("A: ", -labelWidth, labelHeight, surveyManagementLayout, this, lblQuestionNumber,
-                labelSize,Color.white,false,navyBlue);
-        lblAnswerA.setPreferredSize(questionDetailsLabelSize);
+        lblAnswerA = UIComponentBuilder.CreateLabel("A: ", -labelWidth, labelHeight,
+                surveyManagementLayout,this, lblQuestionNumber, labelSize,Color.white,false,navyBlue);
         lblAnswerB = UIComponentBuilder.CreateLabel("B: ", -labelWidth, labelHeight, surveyManagementLayout, this, lblAnswerA,
                 labelSize,Color.white,false,navyBlue);
-        lblAnswerB.setPreferredSize(questionDetailsLabelSize);
         lblAnswerC = UIComponentBuilder.CreateLabel("C: ", -labelWidth, labelHeight, surveyManagementLayout, this, lblAnswerB,
                 labelSize,Color.white,false,navyBlue);
-        lblAnswerC.setPreferredSize(questionDetailsLabelSize);
         lblAnswerD = UIComponentBuilder.CreateLabel("D: ", -labelWidth, labelHeight, surveyManagementLayout, this, lblAnswerC,
                 labelSize,Color.white,false,navyBlue);
-        lblAnswerD.setPreferredSize(questionDetailsLabelSize);
         lblAnswerE = UIComponentBuilder.CreateLabel("E: ", -labelWidth, labelHeight, surveyManagementLayout, this, lblAnswerD,
                 labelSize,Color.white,false,navyBlue);
-        lblAnswerE.setPreferredSize(questionDetailsLabelSize);
         /**
          * Topic TextFields
          */
-        txtTopic = UIComponentBuilder.CreateTextField(20,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblTopic);
-        txtTopic.setPreferredSize(questionDetailsTextFieldSize);
-        txtTopic.setFont(textFieldFonts);
+        txtTopic = UIComponentBuilder.CreateTextField(19,labelWidth+textFieldPadding, 0, surveyManagementLayout,this,
+                lblTopic);
         /**
          * Question and Question number text fields
          */
-        //txtQuestion = UIComponentBuilder.CreateTextField(20,labelWidth+textFieldPadding, 0, surveyManagementLayout,
-        //    this, lblQuestion);
-        //txtQuestion.setPreferredSize(questionDetailsTextFieldSize);
-        //txtQuestion.setFont(textFieldFonts);
         txtQuestionArea = UIComponentBuilder.CreateTextArea(2,19,surveyManagementLayout,
                 labelWidth+textFieldPadding, 0, this, lblQuestion);
-        txtQuestionArea.setPreferredSize(questionDetailsTextFieldSize);
-        txtQuestionArea.setMaximumSize(questionDetailsTextFieldSize);
-        txtQuestionArea.setFont(textFieldFonts);
-        txtQuestionArea.setLineWrap(true);
-        txtQuestionArea.setBorder(textEntryBorder);
-        txtQuestionArea.setText((Integer.toString(txtQuestionArea.getPreferredSize().height))+(labelHeight*7));
-
-        txtQuestionNumber = UIComponentBuilder.CreateTextField(20,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblQuestionNumber);
-        txtQuestionNumber.setPreferredSize(questionDetailsTextFieldSize);
-        txtQuestionNumber.setFont(textFieldFonts);
+        txtQuestionNumber = UIComponentBuilder.CreateTextField(19,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblQuestionNumber);
         /**
          * Answer Text Fields
          */
-        txtAnswerA = UIComponentBuilder.CreateTextField(20,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblAnswerA);
-        txtAnswerA.setPreferredSize(questionDetailsTextFieldSize);
-        txtAnswerA.setFont(textFieldFonts);
-        txtAnswerB = UIComponentBuilder.CreateTextField(20,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblAnswerB);
-        txtAnswerB.setPreferredSize(questionDetailsTextFieldSize);
-        txtAnswerB.setFont(textFieldFonts);
-        txtAnswerC = UIComponentBuilder.CreateTextField(20,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblAnswerC);
-        txtAnswerC.setPreferredSize(questionDetailsTextFieldSize);
-        txtAnswerC.setFont(textFieldFonts);
-        txtAnswerD = UIComponentBuilder.CreateTextField(20,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblAnswerD);
-        txtAnswerD.setPreferredSize(questionDetailsTextFieldSize);
-        txtAnswerD.setFont(textFieldFonts);
-        txtAnswerE = UIComponentBuilder.CreateTextField(20,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblAnswerE);
-        txtAnswerE.setPreferredSize(questionDetailsTextFieldSize);
-        txtAnswerE.setFont(textFieldFonts);
+        txtAnswerA = UIComponentBuilder.CreateTextField(19,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblAnswerA);
+        txtAnswerB = UIComponentBuilder.CreateTextField(19,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblAnswerB);
+        txtAnswerC = UIComponentBuilder.CreateTextField(19,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblAnswerC);
+        txtAnswerD = UIComponentBuilder.CreateTextField(19,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblAnswerD);
+        txtAnswerE = UIComponentBuilder.CreateTextField(19,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblAnswerE);
     }
 
     private void SetupTable() {
@@ -260,22 +285,17 @@ public class SurveyManagementUI extends JFrame implements ActionListener
          */
         lblSortBy = UIComponentBuilder.CreateLabel(" Sort By: ", 10, 579,
                 surveyManagementLayout, this, labelSize, Color.white, false, navyBlue);
-        lblSortBy.setPreferredSize(new Dimension(100, 30));
-
         btnSortQuestion = UIComponentBuilder.CreateButton("Question #", buttonStandardWidth, buttonStandardHeight, 100, 0,this,surveyManagementLayout,this, lblSortBy);
         btnSortTopic = UIComponentBuilder.CreateButton("Topic", buttonStandardWidth, buttonStandardHeight, 105, 0, this, surveyManagementLayout, this,
                 btnSortQuestion);
         btnSortAnswer = UIComponentBuilder.CreateButton("Answer", buttonStandardWidth, buttonStandardHeight, 105, 0, this, surveyManagementLayout, this,
                 btnSortTopic);
-
-
     }
 
     private void SetupSearchQuestion() {
         lblSearchQuestion = UIComponentBuilder.CreateLabel("Search Questions: ", 10, 60, surveyManagementLayout, this, labelSize, Color.WHITE, false, navyBlue);
-        txtSearchQuestions = UIComponentBuilder.CreateTextField(25, 175, 0, surveyManagementLayout, this, lblSearchQuestion);
-        txtSearchQuestions.setPreferredSize(new Dimension(txtSearchQuestions.getWidth(), 28));
-        txtSearchQuestions.setFont(new Font(txtSearchQuestions.getFont().getFontName(),txtSearchQuestions.getFont().getStyle(), labelSize));
+        txtSearchQuestions = UIComponentBuilder.CreateTextField(29, 175, 0, surveyManagementLayout, this,
+                lblSearchQuestion);
     }
 
     /**
@@ -291,13 +311,10 @@ public class SurveyManagementUI extends JFrame implements ActionListener
          * Set the window to display in the centre of the screen
          */
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        ;
         int screenWidth = (int)screenSize.getWidth();
         int screenHeight = (int)screenSize.getHeight();
         setLocation((screenWidth/2)-(windowSize.width/2),(screenHeight/2)-(windowSize.height/2));
         setLayout(surveyManagementLayout);
-
-
     }
 
     /**
@@ -307,7 +324,6 @@ public class SurveyManagementUI extends JFrame implements ActionListener
     {
         lblTitle = UIComponentBuilder.CreateLabel("Survey By Network", 0,0, surveyManagementLayout, this, titleSize,
                 Color.WHITE, true, new Dimension(windowSize.width, 50), navyBlue);
-        lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
     }
     //endregion
 
