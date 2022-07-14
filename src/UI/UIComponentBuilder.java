@@ -52,11 +52,11 @@ public class UIComponentBuilder {
         inputFrame.add(outputNewLabel);
         if (isTheFontBold)
         {
-            outputNewLabel.setFont(new Font("Vendana", Font.BOLD, inputTextSize));
+            outputNewLabel.setFont(new Font("Dialog", Font.BOLD, inputTextSize));
         }
         else
         {
-            outputNewLabel.setFont(new Font("Vendana", Font.PLAIN, inputTextSize));
+            outputNewLabel.setFont(new Font("Dialog", Font.PLAIN, inputTextSize));
         }
         outputNewLabel.setForeground(inputTextColour);
         outputNewLabel.setOpaque(true);
@@ -92,11 +92,11 @@ public class UIComponentBuilder {
         inputFrame.add(outputNewLabel);
         if (isTheFontBold)
         {
-            outputNewLabel.setFont(new Font("Vendana", Font.BOLD, inputTextSize));
+            outputNewLabel.setFont(new Font("Dialog", Font.BOLD, inputTextSize));
         }
         else
         {
-            outputNewLabel.setFont(new Font("Vendana", Font.PLAIN, inputTextSize));
+            outputNewLabel.setFont(new Font("Dialog", Font.PLAIN, inputTextSize));
         }
         outputNewLabel.setForeground(inputTextColour);
         outputNewLabel.setOpaque(true);
@@ -129,11 +129,11 @@ public class UIComponentBuilder {
         inputLayout.putConstraint(SpringLayout.NORTH, outputNewLabel, inputYPosition, SpringLayout.SOUTH, attachToComponent);
         if (isTheFontBold)
         {
-            outputNewLabel.setFont(new Font("Vendana", Font.BOLD, inputTextSize));
+            outputNewLabel.setFont(new Font("Dialog", Font.BOLD, inputTextSize));
         }
         else
         {
-            outputNewLabel.setFont(new Font("Vendana", Font.PLAIN, inputTextSize));
+            outputNewLabel.setFont(new Font("Dialog", Font.PLAIN, inputTextSize));
         }
         outputNewLabel.setForeground(inputTextColour);
         outputNewLabel.setPreferredSize(new Dimension(inputSize));
@@ -164,11 +164,11 @@ public class UIComponentBuilder {
         inputFrame.add(outputNewLabel);
         if (isTheFontBold)
         {
-            outputNewLabel.setFont(new Font("Vendana", Font.BOLD, inputTextSize));
+            outputNewLabel.setFont(new Font("Dialog", Font.BOLD, inputTextSize));
         }
         else
         {
-            outputNewLabel.setFont(new Font("Vendana", Font.PLAIN, inputTextSize));
+            outputNewLabel.setFont(new Font("Dialog", Font.PLAIN, inputTextSize));
         }
         outputNewLabel.setForeground(inputTextColour);
         outputNewLabel.setOpaque(true);
@@ -198,11 +198,11 @@ public class UIComponentBuilder {
         inputFrame.add(outputNewLabel);
         if (isTheFontBold)
         {
-            outputNewLabel.setFont(new Font("Vendana", Font.BOLD, inputTextSize));
+            outputNewLabel.setFont(new Font("Dialog", Font.BOLD, inputTextSize));
         }
         else
         {
-            outputNewLabel.setFont(new Font("Vendana", Font.PLAIN, inputTextSize));
+            outputNewLabel.setFont(new Font("Dialog", Font.PLAIN, inputTextSize));
         }
         outputNewLabel.setForeground(inputTextColour);
         outputNewLabel.setOpaque(true);
@@ -231,11 +231,11 @@ public class UIComponentBuilder {
         inputFrame.add(outputNewLabel);
         if (isTheFontBold)
         {
-            outputNewLabel.setFont(new Font("Vendana", Font.BOLD, inputTextSize));
+            outputNewLabel.setFont(new Font("Dialog", Font.BOLD, inputTextSize));
         }
         else
         {
-            outputNewLabel.setFont(new Font("Vendana", Font.PLAIN, inputTextSize));
+            outputNewLabel.setFont(new Font("Dialog", Font.PLAIN, inputTextSize));
         }
         outputNewLabel.setForeground(inputTextColour);
         outputNewLabel.setOpaque(true);
@@ -268,11 +268,11 @@ public class UIComponentBuilder {
         inputFrame.add(outputNewLabel);
         if (isTheFontBold)
         {
-            outputNewLabel.setFont(new Font("Vendana", Font.BOLD, inputTextSize));
+            outputNewLabel.setFont(new Font("Dialog", Font.BOLD, inputTextSize));
         }
         else
         {
-            outputNewLabel.setFont(new Font("Vendana", Font.PLAIN, inputTextSize));
+            outputNewLabel.setFont(new Font("Dialog", Font.PLAIN, inputTextSize));
         }
         outputNewLabel.setForeground(inputTextColour);
         outputNewLabel.setOpaque(true);
@@ -595,7 +595,7 @@ public class UIComponentBuilder {
      */
     public static void StyleLabel(JLabel inputLabel, int inputTextSize, Color inputTextColour)
     {
-        inputLabel.setFont(new Font("Vendana", Font.PLAIN, inputTextSize));
+        inputLabel.setFont(new Font("Dialog", Font.PLAIN, inputTextSize));
         inputLabel.setForeground(inputTextColour);
     }
 
@@ -647,11 +647,11 @@ public class UIComponentBuilder {
     {
         if (isTheFontBold)
         {
-            inputLabel.setFont(new Font("Vendana", Font.BOLD, inputTextSize));
+            inputLabel.setFont(new Font("Dialog", Font.BOLD, inputTextSize));
         }
         else
         {
-            inputLabel.setFont(new Font("Vendana", Font.PLAIN, inputTextSize));
+            inputLabel.setFont(new Font("Dialog", Font.PLAIN, inputTextSize));
         }
         inputLabel.setForeground(inputTextColour);
     }

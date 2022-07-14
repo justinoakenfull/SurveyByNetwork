@@ -58,7 +58,7 @@ public class SurveyManagementUI extends JFrame implements ActionListener
     int buttonStandardWidth = 100;
     int buttonLargeWidth = 300;
     int buttonStandardHeight = 30;
-    Font textFieldFonts = new Font("Verdana", Font.PLAIN, labelSize);
+    Font textFieldFonts = new Font("Dialog", Font.PLAIN, labelSize);
     Dimension questionDetailsTextFieldSize = new Dimension(textFieldWidth,textFieldHeight);
     Dimension questionDetailsLabelSize = new Dimension(labelWidth,labelHeight);
     Border borderLine = BorderFactory.createLineBorder(Color.BLACK);
@@ -170,7 +170,7 @@ public class SurveyManagementUI extends JFrame implements ActionListener
                 0, this, surveyManagementLayout, this, lblPostOrder);
         btnSave = UIComponentBuilder.CreateButton("Save", buttonStandardWidth,buttonStandardHeight, 0,
                 lblPostOrder.getPreferredSize().height, this, surveyManagementLayout, this, btnDisplay);
-        txtMessageArea = UIComponentBuilder.CreateTextArea(1, 37, surveyManagementLayout, buttonStandardWidth+7,
+        txtMessageArea = UIComponentBuilder.CreateTextArea(1, 42, surveyManagementLayout, buttonStandardWidth+18,
                 0+(buttonStandardHeight*2)/2-24,this, btnDisplay);
 
 
@@ -183,7 +183,7 @@ public class SurveyManagementUI extends JFrame implements ActionListener
         lblBinaryTree = UIComponentBuilder.CreateLabel(" Binary Tree: ", 0-txtLinkedListArea.getPreferredSize().width,
                 txtLinkedListArea.getPreferredSize().height+10,surveyManagementLayout, this, txtLinkedListArea,
                 labelSize, Color.white, false, navyBlue);
-        txtBinaryTreeArea = UIComponentBuilder.CreateTextArea(2, 60, surveyManagementLayout, 0, 30,this,
+        txtBinaryTreeArea = UIComponentBuilder.CreateTextArea(2, 70, surveyManagementLayout, 0, 30,this,
                 lblBinaryTree);
         /**
          * These are set here and not in the styling method due to alignment issues. The footer buttons positions are
@@ -198,7 +198,7 @@ public class SurveyManagementUI extends JFrame implements ActionListener
         lblLinkedList = UIComponentBuilder.CreateLabel(" Linked List: ", 0-buttonLargeWidth, 10+buttonStandardHeight,
                 surveyManagementLayout
                 ,this, btnExit, labelSize, Color.white, false, navyBlue);
-        txtLinkedListArea = UIComponentBuilder.CreateTextArea(2, 60, surveyManagementLayout, 0, 30,this,
+        txtLinkedListArea = UIComponentBuilder.CreateTextArea(2, 70, surveyManagementLayout, 0, 30,this,
                 lblLinkedList);
         /**
          * These are set here and not in the styling method due to alignment issues. The binary tree positions are
@@ -224,7 +224,7 @@ public class SurveyManagementUI extends JFrame implements ActionListener
          * Topic Label and Title
          */
         lblTopicTitle = UIComponentBuilder.CreateLabel("Question Details", 630, 60, surveyManagementLayout, this,
-                30, Color.white,true, new Dimension(508, 60), navyBlue);
+                30, Color.white,true, new Dimension(515, 60), navyBlue);
         lblTopic = UIComponentBuilder.CreateLabel("Topic: ",630,120,surveyManagementLayout,this,labelSize,Color.WHITE,
                 false, navyBlue);
         /**
@@ -251,22 +251,22 @@ public class SurveyManagementUI extends JFrame implements ActionListener
         /**
          * Topic TextFields
          */
-        txtTopic = UIComponentBuilder.CreateTextField(19,labelWidth+textFieldPadding, 0, surveyManagementLayout,this,
+        txtTopic = UIComponentBuilder.CreateTextField(23,labelWidth+textFieldPadding, 0, surveyManagementLayout,this,
                 lblTopic);
         /**
          * Question and Question number text fields
          */
-        txtQuestionArea = UIComponentBuilder.CreateTextArea(2,19,surveyManagementLayout,
+        txtQuestionArea = UIComponentBuilder.CreateTextArea(2,23,surveyManagementLayout,
                 labelWidth+textFieldPadding, 0, this, lblQuestion);
-        txtQuestionNumber = UIComponentBuilder.CreateTextField(19,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblQuestionNumber);
+        txtQuestionNumber = UIComponentBuilder.CreateTextField(23,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblQuestionNumber);
         /**
          * Answer Text Fields
          */
-        txtAnswerA = UIComponentBuilder.CreateTextField(19,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblAnswerA);
-        txtAnswerB = UIComponentBuilder.CreateTextField(19,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblAnswerB);
-        txtAnswerC = UIComponentBuilder.CreateTextField(19,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblAnswerC);
-        txtAnswerD = UIComponentBuilder.CreateTextField(19,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblAnswerD);
-        txtAnswerE = UIComponentBuilder.CreateTextField(19,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblAnswerE);
+        txtAnswerA = UIComponentBuilder.CreateTextField(23,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblAnswerA);
+        txtAnswerB = UIComponentBuilder.CreateTextField(23,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblAnswerB);
+        txtAnswerC = UIComponentBuilder.CreateTextField(23,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblAnswerC);
+        txtAnswerD = UIComponentBuilder.CreateTextField(23,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblAnswerD);
+        txtAnswerE = UIComponentBuilder.CreateTextField(23,labelWidth+textFieldPadding, 0, surveyManagementLayout,this, lblAnswerE);
     }
 
     private void SetupTable() {

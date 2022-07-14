@@ -19,8 +19,8 @@ public class ClientSurveyQuestionsUI
     /**
      * Window wide style settings
      */
-    Font titleFont = new Font("Vendana", Font.BOLD, 40);
-    Font labelsFont = new Font("Vendana", Font.PLAIN, 20);
+    Font titleFont = new Font("Dialog", Font.BOLD, 40);
+    Font labelsFont = new Font("Dialog", Font.PLAIN, 20);
     Color navyBlue = Color.decode("#1f497d");
     int labelTextSize = 20;
     Dimension questionsLabelSize = new Dimension(100,40);
