@@ -5,8 +5,12 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import Container.tableModel;
 
-public class SurveyManagementUI extends JFrame implements ActionListener
+public class SurveyManagementUI extends JFrame implements ActionListener, MouseListener
 {
     /**
      * Main Swing Layout
@@ -38,7 +42,9 @@ public class SurveyManagementUI extends JFrame implements ActionListener
     /**
      * Define JTables
      */
-    JTable _PLACEHOLDER_;
+    JTable questionTable;
+    tableModel questionModel;
+    ArrayList<Object[]> questionValues;
 
     /**
      * Define the Window Size
@@ -79,7 +85,6 @@ public class SurveyManagementUI extends JFrame implements ActionListener
         SetupWindowAndBorder();
         SetupTitle();
         SetupSearchQuestion();
-        SetupTable();
         SetupTopicDetails();
         SetupMiddleButtons();
         SetupLinkedListSection();
@@ -87,6 +92,7 @@ public class SurveyManagementUI extends JFrame implements ActionListener
         SetupFooterButtons();
         StyleTextFields();
         StyleLabels();
+        SetupTable();
     }
 
     private void StyleLabels()
@@ -220,6 +226,17 @@ public class SurveyManagementUI extends JFrame implements ActionListener
 
     private void SetupTopicDetails()
     {
+
+        /**
+         * Setup Table sort buttons
+         */
+        lblSortBy = UIComponentBuilder.CreateLabel(" Sort By: ", 10, 579,
+                surveyManagementLayout, this, labelSize, Color.white, false, navyBlue);
+        btnSortQuestion = UIComponentBuilder.CreateButton("Question #", buttonStandardWidth, buttonStandardHeight, 100, 0,this,surveyManagementLayout,this, lblSortBy);
+        btnSortTopic = UIComponentBuilder.CreateButton("Topic", buttonStandardWidth, buttonStandardHeight, 105, 0, this, surveyManagementLayout, this,
+                btnSortQuestion);
+        btnSortAnswer = UIComponentBuilder.CreateButton("Answer", buttonStandardWidth, buttonStandardHeight, 105, 0, this, surveyManagementLayout, this,
+                btnSortTopic);
         /**
          * Topic Label and Title
          */
@@ -273,24 +290,61 @@ public class SurveyManagementUI extends JFrame implements ActionListener
         /**
          * Setup Table
          */
-        _PLACEHOLDER_ = new JTable();
-        surveyManagementLayout.putConstraint(SpringLayout.WEST, _PLACEHOLDER_, 10, SpringLayout.WEST,this);
-        surveyManagementLayout.putConstraint(SpringLayout.NORTH, _PLACEHOLDER_, 100, SpringLayout.NORTH,this);
-        _PLACEHOLDER_.setPreferredSize(new Dimension(575,479));
-        _PLACEHOLDER_.setBackground(Color.orange);
-        this.add(_PLACEHOLDER_);
 
-        /**
-         * Setup Table sort buttons
-         */
-        lblSortBy = UIComponentBuilder.CreateLabel(" Sort By: ", 10, 579,
-                surveyManagementLayout, this, labelSize, Color.white, false, navyBlue);
-        btnSortQuestion = UIComponentBuilder.CreateButton("Question #", buttonStandardWidth, buttonStandardHeight, 100, 0,this,surveyManagementLayout,this, lblSortBy);
-        btnSortTopic = UIComponentBuilder.CreateButton("Topic", buttonStandardWidth, buttonStandardHeight, 105, 0, this, surveyManagementLayout, this,
-                btnSortQuestion);
-        btnSortAnswer = UIComponentBuilder.CreateButton("Answer", buttonStandardWidth, buttonStandardHeight, 105, 0, this, surveyManagementLayout, this,
-                btnSortTopic);
+        // Create a panel to hold all other components
+        JPanel topPanel = new JPanel();
+        topPanel.setLayout(new BorderLayout());
+        add(topPanel);
+
+        // Create column names
+        String[] columnNames =
+                { "#", "Topic", "Question"};
+
+        // Create some data
+        questionValues = new ArrayList();
+        questionValues.add(new Object[] {"1","Topic1","This is the first question."});
+        questionValues.add(new Object[] {"2","Topic2","This is the second question."});
+        questionValues.add(new Object[] {"3","Topic3","This is the third question."});
+        questionValues.add(new Object[] {"4","Topic4","This is the fourth question."});
+        questionValues.add(new Object[] {"55","Topic5 really long topic","This is the fourth question."});
+
+        // constructor of JTable model
+        questionModel = new tableModel(questionValues, columnNames);
+
+        // Create a new table instance
+        questionTable = new JTable(questionModel);
+
+        // Configure some of JTable's paramters
+        questionTable.isForegroundSet();
+        questionTable.setShowHorizontalLines(false);
+        questionTable.setRowSelectionAllowed(true);
+        questionTable.setColumnSelectionAllowed(false);
+        add(questionTable);
+
+        // Change the text and background colours
+        questionTable.setSelectionForeground(Color.white);
+        questionTable.setSelectionBackground(navyBlue);
+        questionTable.setFont(textFieldFonts);
+        questionTable.setRowHeight(35);
+
+
+
+
+
+        // Add the table to a scrolling pane, size and locate
+        JScrollPane scrollPane = questionTable.createScrollPaneForTable(questionTable);
+        topPanel.add(scrollPane, BorderLayout.CENTER);
+        topPanel.setPreferredSize(new Dimension(575, 479));
+        surveyManagementLayout.putConstraint(SpringLayout.WEST, topPanel, 10, SpringLayout.WEST, this);
+        surveyManagementLayout.putConstraint(SpringLayout.NORTH, topPanel, 100, SpringLayout.NORTH, this);
+
+        questionTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        questionTable.getColumnModel().getColumn(0).setPreferredWidth(30);
+        questionTable.getColumnModel().getColumn(1).setPreferredWidth(92);
+        questionTable.getColumnModel().getColumn(2).setPreferredWidth(450);
+        questionTable.addMouseListener(this);
     }
+
 
     private void SetupSearchQuestion() {
         lblSearchQuestion = UIComponentBuilder.CreateLabel("Search Questions: ", 10, 60, surveyManagementLayout, this, labelSize, Color.WHITE, false, navyBlue);
@@ -330,5 +384,36 @@ public class SurveyManagementUI extends JFrame implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e) {
 
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (e.getSource() == questionTable)
+        {
+            int rowIndex = questionTable.getSelectedRow();
+            Object[] selectedRow = questionValues.get(rowIndex);
+            for (int i = 0; i < selectedRow.length; i++) {
+                System.out.println(selectedRow[i]);;
+            }
+        }
+        System.out.println("Mouse Clicked!");
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
     }
 }

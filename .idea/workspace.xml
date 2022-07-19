@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8c895c8-4c62-45d9-ae0a-312d7572976a" name="Changes" comment="ui updates">
+      <change afterPath="$PROJECT_DIR$/src/Container/tableModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/QuestionTextFields.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/ClientSurveyQuestionsUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/ClientSurveyQuestionsUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/SurveyManagementUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/SurveyManagementUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/UIComponentBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/UIComponentBuilder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +71,8 @@
       <workItem from="1657670890547" duration="4130000" />
       <workItem from="1657752375003" duration="20359000" />
       <workItem from="1657780941666" duration="2832000" />
+      <workItem from="1658198597805" duration="764000" />
+      <workItem from="1658200258952" duration="6067000" />
     </task>
     <task id="LOCAL-00001" summary="ui updates">
       <created>1657706699544</created>
@@ -135,6 +137,11 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="7" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/UI/SurveyManagementUI.java</url>
+          <line>392</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
